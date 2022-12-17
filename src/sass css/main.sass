@@ -7,6 +7,9 @@ body
   background-color: black
   color: white
 
+.display-none
+  display: none
+
 .background-image
   position: absolute
   top: 0
@@ -14,37 +17,54 @@ body
   z-index: 0
   width: 100%
   height: 100%
-  overflow: hidden
+  //overflow: hidden
   //background-image: url("../img/wallpaper/001.jpg")
 
 .whole-page
-  position: relative
+  //position: absolute
+  width: 100%
+  height: 100%
 
 
 .midl-block
   max-width: 1110px
   margin: 0 auto
-  z-index: 2
-  position: relative
+  padding: 0 5px
 
-.wizualEfect
-  border: solid 2px red
+
+.border-effect
+  border: solid 1px white
+  border-radius: 10px
 
 .start_block
+  position: relative
   min-height: 400px
   margin: 10% auto 10% auto
-  max-width: 300px
-  background-color: black
-  opacity: 0.5
+  padding: 0 10px
+  max-width: 50%
+  min-width: 300px
+
   z-index: 1
-  position: inherit
+
+
+
+.elm-background
+  background-color: rgba(0, 0, 0, 0.4)
+
+
+.start-question
+    text-align: center
+    font-size: 64px
 
 .start-button
-  width: 100px
-  margin: 100px auto 0 auto
+  color: white
+  margin: 60px auto
   cursor: pointer
-  font-size: 32px
-  text-align: center
-
-.start-button:hover
   font-size: 64px
+  text-align: center
+  width: 100%
+  max-width: 900px
+  border: solid 4px white
+  border-radius: 10px
+
+
