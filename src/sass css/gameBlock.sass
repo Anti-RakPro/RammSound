@@ -1,6 +1,12 @@
 
 .game-block
   position: relative
+  z-index: 2
+
+.game-block:nth-child
+ border: solid 1px white
+ border-radius: 10px
+
 
 .game-header
   display: flex
@@ -8,29 +14,71 @@
 
 .album-list
   display: flex
-  justify-content: space-between
+  flex-wrap: wrap
+  text-align: center
+  justify-content: center
+
+.album-list-elm
+  margin: 5px 10px
+  padding: 5px 5px
+
+
+.album-list-elm__active
+  border: 1px solid white
+  background-color: black
+  border-radius: 5px
+  font-weight: 700
 
 .random-song
   display: flex
   padding: 10px
 
+.random-song__info
+  width: 100%
 
-.random-song-img
-  width: 100px
-  height: 100px
+.random-song__img
+  width: 200px
+  height: 200px
 
-.random-song-info
+.random-song__info
+  width: 100%
+  margin: 0 10px
+
+.random-song__info-name
+  margin: 10px
+
+.random-song__info-song
   width: 100%
 
 .game-body_var-and-answer
-    display: flex
+  display: flex
 
 .game-variants-list
   width: 50%
   padding: 5px 5px
 
+.game-variant
+  cursor: pointer
 
 .game-answer
   width: 50%
   padding: 0 5px
+
+
+.game-next-lvl-btn
+  text-align: center
+
+@media (max-width: 750px)
+
+ .game-body_var-and-answer
+  display: block
+
+ .game-variants-list
+  width: unset
+  margin-bottom: 30px
+
+ .game-answer
+  width: unset
+  min-height: 200px
+
 

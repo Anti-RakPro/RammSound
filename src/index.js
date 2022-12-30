@@ -2,7 +2,7 @@ import "./sass css/main.sass"
 import "./sass css/backgraund-imag.sass"
 import Elm from "./js/element-maker";
 import {startGameBtn} from "./js/startQuest";
-
+import {muzAlbum1} from "./js/muz";
 
 export const mainDiv = new Elm(
     document.body ,
@@ -29,7 +29,9 @@ const startButton = new Elm(
     'LET\'S TEST IT OUT')
 startButton.setOnClick(startGameBtn)
 
+// skeep entree
 
+startGameBtn(muzAlbum1)
 
 
 

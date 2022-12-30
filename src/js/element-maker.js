@@ -33,7 +33,7 @@ export default class ElementMaker {
     destroy() {
         this.elm.remove()
     };
-
+//TODO
     setOnClick(onclick) {
         this.elm.onclick = onclick
     }
