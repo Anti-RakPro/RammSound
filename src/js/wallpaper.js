@@ -39,11 +39,11 @@ function change_wallpaper(turn){
             backGroundImg.elm.src = wallpaperList[turn];
             turn++
             change_wallpaper(turn)
-            console.log('time period', turn)
+            // console.log('time period', turn)
         },3000)
     }
 
-change_wallpaper(1)
+// change_wallpaper(1)
 
 
 

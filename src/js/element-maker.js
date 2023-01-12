@@ -30,7 +30,7 @@ export default class ElementMaker {
         this.elm = elm;
 
     }
-    destroy() {
+    remove() {
         this.elm.remove()
     };
 //TODO

@@ -1,4 +1,5 @@
 
+
 .game-block
   position: relative
   z-index: 2
@@ -43,12 +44,16 @@
 .random-song__info
   width: 100%
   margin: 0 10px
+  position: relative
 
 .random-song__info-name
   margin: 10px
 
 .random-song__info-song
-  width: 100%
+  width: 98%
+  position: absolute
+  bottom: 0
+  left: -3px
 
 .game-body_var-and-answer
   display: flex
@@ -59,14 +64,54 @@
 
 .game-variant
   cursor: pointer
+  margin: 5px 0
+  display: flex
+
+.mark-all
+  position: relative
+  z-index: 2
+  margin-right: 10px
 
 .game-answer
   width: 50%
   padding: 0 5px
+  position: relative
+  display: flex
+
+
+.game-answer__emotion
+  width: 175px
+  height: 175px
+  margin-top: 10px
+  margin-left: 10px
+
+.game-answer__info-block
+  margin-top: 20px
+  margin-left: 10px
+
+
+.game-answer__name
+  margin: 5px 0
+
+.game-answer__album-name
+  margin: 5px 0
+
+
+.game-answer__muz
+  width: 98%
+  position: absolute
+  bottom: 0
+  left: 0
+  border-radius: 10px
+  margin: 5px 5px 5px 5px
+
 
 
 .game-next-lvl-btn
   text-align: center
+  font-size: 38px
+  margin: 10px 0
+  cursor: pointer
 
 @media (max-width: 750px)
 
@@ -79,6 +124,11 @@
 
  .game-answer
   width: unset
-  min-height: 200px
+  min-height: 240px
 
+ .random-song
+   display: block
+   text-align: center
 
+ .random-song__info-song
+   position: unset
