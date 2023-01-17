@@ -29,12 +29,33 @@ export function startGameBtn( ) {
         'RAMMSTEIN'
     )
 
-    const gameScore = new Elm(
+    const gameScoreInfo = new Elm(
         gameHeader.elm,
         'p',
-        'header-score',
+        'header-score-block',
+
+    )
+
+    const gameScoreText = new Elm(
+        gameScoreInfo.elm,
+        'p',
+        'header-score-text',
         'SCORE'
     )
+
+    const gameScoreNumber = new Elm(
+        gameScoreInfo.elm,
+        'p',
+        'header-score-number',
+        '13'
+    )
+
+    const finalScore = new Elm(
+        gameBlock.elm,
+        '',
+        'final-score-page'
+    )
+
 
     const gameBody = new Elm(
         gameBlock.elm,
@@ -353,7 +374,12 @@ export function startGameBtn( ) {
         '2022'
     )
 
+    //
+
+
+
     renderingArgumentsImport = {
+
         albumElm1,
         albumElm2,
         albumElm3,
@@ -380,6 +406,7 @@ export function startGameBtn( ) {
         gameVariant6,
         gameVariant6Mark,
         gameVariant6Name,
+
         randomImg,
         randomSongInfoSongControls,
         gameAnswerName,
@@ -390,13 +417,16 @@ export function startGameBtn( ) {
     }
 
     showFinalScoreImport = {
-        gameBlock,
+        finalScore,
+        gameBody,
     }
 
     gameNextLvl.setOnClick(()=>renderNextLvl())
 
     renderNextLvl('first time')
 }
+
+
 
 export let renderingArgumentsImport
 

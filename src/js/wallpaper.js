@@ -43,7 +43,7 @@ function change_wallpaper(turn){
         },3000)
     }
 
-// change_wallpaper(1)
+change_wallpaper(1)
 
 
 

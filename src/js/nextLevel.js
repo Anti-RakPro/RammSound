@@ -2,6 +2,8 @@ import {renderingArgumentsImport} from "./renderQuest";
 import {RandomNinePlay} from "./RandomNinePlay";
 import {muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, muzAlbum6, muzAlbum7, muzAlbum8} from "./muzLibrary";
 import {showFinalScore} from "./showFinalScore";
+import {newEmotion} from './newEmotion'
+import questionM from '../media/question001.gif'
 
 const muzAlbumLibrary = [muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, muzAlbum6, muzAlbum7, muzAlbum8]
 
@@ -9,70 +11,84 @@ const muzAlbumLibrary = [muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, 
 let chozenElm
 export let gameInfo = {
     findAnswer: false,
-    gameAlbumNumber: 0
-
+    gameAlbumNumber: 7,
+    showScoreStatus: false
 }
 
 //TODO wrong naming
 let muzAlbumNumber
 
 export function renderNextLvl(code = '') {
+
     if (!gameInfo.findAnswer && code === '') {
         return
     }
     checkForStage()
 
-    function checkForStage() {
-        if (!gameInfo.findAnswer) {
-            return
+    if(!gameInfo.showScoreStatus){
+        muzAlbumNumber = muzAlbumLibrary[gameInfo.gameAlbumNumber]
+        activatingHeaderAlbumListElm()
+        renderGameContent()
+
+
+
+        //order is important
+        //TODO not working
+
+        chozenElm = ChooseRandomSong()
+        renderingArgumentsImport.randomSongInfoSongControls.elm.src = chozenElm.audio
+    }
+
+
+
+
+}
+
+function checkForStage() {
+    console.log('019', 'checkForStage')
+    if (!gameInfo.findAnswer) {
+        return
+    } else {
+
+        gameInfo.gameAlbumNumber += 1
+        gameInfo.findAnswer = false
+        // checks for last album
+        if (gameInfo.gameAlbumNumber > muzAlbumLibrary.length -1) {
+            gameInfo.showScoreStatus = true
+            showFinalScore()
         } else {
-            console.log('019')
-            gameInfo.gameAlbumNumber += 1
-            gameInfo.findAnswer = false
-            // checks for last album
-            if (gameInfo.gameAlbumNumber > muzAlbumLibrary.length) {
-                showFinalScore()
-            } else {
-                resetVariantsIcons()
-            }
-
+            //TODO  resetLvl()
+            // resetLvl()
+            resetVariantsIcons()
         }
-    }
 
-    muzAlbumNumber = muzAlbumLibrary[gameInfo.gameAlbumNumber]
-    activatingAlbumListElm()
-    renderGameContent()
-
-    function renderGameContent() {
-        console.log('018', muzAlbumNumber[0].albumImg)
-        renderingArgumentsImport.randomImg.elm.src = muzAlbumNumber[0].albumImg
-        renderingArgumentsImport.gameAnswerEmotion.elm.src = muzAlbumNumber[0].albumImg
-        // console.log('011', renderingArgumentsImport.gameVariant1Mark.elm)
-
-        renderingArgumentsImport.gameVariant1Name.elm.textContent = muzAlbumNumber[0].name
-        renderingArgumentsImport.gameVariant2Name.elm.textContent = muzAlbumNumber[1].name
-        renderingArgumentsImport.gameVariant3Name.elm.textContent = muzAlbumNumber[2].name
-        renderingArgumentsImport.gameVariant4Name.elm.textContent = muzAlbumNumber[3].name
-        renderingArgumentsImport.gameVariant5Name.elm.textContent = muzAlbumNumber[4].name
-        renderingArgumentsImport.gameVariant6Name.elm.textContent = muzAlbumNumber[5].name
-        renderingArgumentsImport.gameAnswerAlbumName.elm.textContent = muzAlbumNumber[0].albumName
-    }
-
-    //order is important
-    //TODO not working
-
-    chozenElm = ChooseRandomSong()
-    renderingArgumentsImport.randomSongInfoSongControls.elm.src = chozenElm.audio
-
-
-    function ChooseRandomSong() {
-        console.log('muzAlbumNumber', muzAlbumNumber)
-        return muzAlbumNumber[Math.floor(Math.random() * 6)]
     }
 }
 
+function renderGameContent() {
+    console.log('023', 'renderGameContent')
+    console.log('018', muzAlbumNumber[0].albumImg)
+    renderingArgumentsImport.randomImg.elm.src = muzAlbumNumber[0].albumImg
+    renderingArgumentsImport.gameAnswerEmotion.elm.src = questionM
+    // console.log('011', renderingArgumentsImport.gameVariant1Mark.elm)
+
+    renderingArgumentsImport.gameVariant1Name.elm.textContent = muzAlbumNumber[0].name
+    renderingArgumentsImport.gameVariant2Name.elm.textContent = muzAlbumNumber[1].name
+    renderingArgumentsImport.gameVariant3Name.elm.textContent = muzAlbumNumber[2].name
+    renderingArgumentsImport.gameVariant4Name.elm.textContent = muzAlbumNumber[3].name
+    renderingArgumentsImport.gameVariant5Name.elm.textContent = muzAlbumNumber[4].name
+    renderingArgumentsImport.gameVariant6Name.elm.textContent = muzAlbumNumber[5].name
+    renderingArgumentsImport.gameAnswerAlbumName.elm.textContent = muzAlbumNumber[0].albumName
+}
+
+function ChooseRandomSong() {
+    console.log('muzAlbumNumber', muzAlbumNumber)
+    return muzAlbumNumber[Math.floor(Math.random() * 6)]
+}
 
 export function ChooseOption(elm) {
+
+    console.log('008.2', 'ChooseOption')
     console.log('008', elm, elm.this)
     console.log('009', chozenElm, (elm.textContent === chozenElm.name))
     let isPassed = (elm.textContent === chozenElm.name)
@@ -92,8 +108,11 @@ export function ChooseOption(elm) {
 
         renderingArgumentsImport.randomSongInfoSongControls.elm.pause()
         renderingArgumentsImport.gameAnswerName.elm.textContent = elm.lastChild.textContent
+        renderingArgumentsImport.gameAnswerEmotion.elm.src = muzAlbumNumber[0].albumImg
     } else {
         RandomNinePlay()
+        if(!gameInfo.findAnswer) renderingArgumentsImport.gameAnswerEmotion.elm.src = newEmotion()
+
         elm.firstElementChild.classList.replace('fa-circle', 'fa-circle-xmark')
         // renderingArgumentsImport.gameAnswerSongSrc.elm.setAttribute('src', findSoundSrc(elm))
         renderingArgumentsImport.gameAnswerName.elm.textContent = elm.lastChild.textContent
@@ -118,7 +137,8 @@ function findSoundSrc(elm) {
     }
 }
 
-function activatingAlbumListElm() {
+function activatingHeaderAlbumListElm() {
+    // ця функція підсвічує активний альбом в списку хедера
     renderingArgumentsImport.albumElm1.elm.classList.remove('album-list-elm__active')
     renderingArgumentsImport.albumElm2.elm.classList.remove('album-list-elm__active')
     renderingArgumentsImport.albumElm3.elm.classList.remove('album-list-elm__active')

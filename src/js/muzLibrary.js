@@ -1,4 +1,6 @@
 
+import emo_001 from '../media/emotions.gif/001.gif'
+
 
 import albImg1 from '../img/AlbumsImg/01_herzeleid.jpg'
 

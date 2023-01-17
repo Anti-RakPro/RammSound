@@ -1,7 +1,7 @@
 import "./sass css/main.sass"
-import "./sass css/backgraund-imag.sass"
 import Elm from "./js/element-maker";
 import {startGameBtn} from "./js/renderQuest";
+import {showFinalScore} from "./js/showFinalScore";
 
 export const mainDiv = new Elm(
     document.body ,
@@ -30,6 +30,9 @@ startButton.setOnClick(()=>startGameBtn())
 
 // skeep entree
 startGameBtn()
+
+
+showFinalScore()
 
 
 
