@@ -4,6 +4,7 @@ import {muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, muzAlbum6, muzAlb
 import {showFinalScore} from "./showFinalScore";
 import {newEmotion} from './newEmotion'
 import questionM from '../media/question001.gif'
+import {countScore} from "./countScore";
 
 const muzAlbumLibrary = [muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, muzAlbum6, muzAlbum7, muzAlbum8]
 
@@ -11,15 +12,16 @@ const muzAlbumLibrary = [muzAlbum1, muzAlbum2, muzAlbum3, muzAlbum4, muzAlbum5, 
 let chozenElm
 export let gameInfo = {
     findAnswer: false,
-    gameAlbumNumber: 7,
-    showScoreStatus: false
+    gameAlbumNumber: 0,
+    showScoreStatus: false,
+    totalScore: 0
 }
 
 //TODO wrong naming
 let muzAlbumNumber
 
 export function renderNextLvl(code = '') {
-
+    //TODO check this if
     if (!gameInfo.findAnswer && code === '') {
         return
     }
@@ -30,25 +32,25 @@ export function renderNextLvl(code = '') {
         activatingHeaderAlbumListElm()
         renderGameContent()
 
-
-
         //order is important
+        // askdflkjasdlkfj
         //TODO not working
-
         chozenElm = ChooseRandomSong()
         renderingArgumentsImport.randomSongInfoSongControls.elm.src = chozenElm.audio
+        renderingArgumentsImport.gameAnswerSongControls.elm.src = ''
+        renderingArgumentsImport.gameAnswerName.elm.textContent = ''
     }
-
-
-
-
+    renderScoreCount()
+    chendgeNextLvlButton()
 }
 
 function checkForStage() {
     console.log('019', 'checkForStage')
+    //TODO check if if is nesesery
     if (!gameInfo.findAnswer) {
         return
     } else {
+
 
         gameInfo.gameAlbumNumber += 1
         gameInfo.findAnswer = false
@@ -88,13 +90,16 @@ function ChooseRandomSong() {
 
 export function ChooseOption(elm) {
 
-    console.log('008.2', 'ChooseOption')
-    console.log('008', elm, elm.this)
-    console.log('009', chozenElm, (elm.textContent === chozenElm.name))
+    // console.log('008.2', 'ChooseOption')
+    // console.log('008', elm, elm.this)
+    // console.log('009', chozenElm, (elm.textContent === chozenElm.name))
     let isPassed = (elm.textContent === chozenElm.name)
 
     if (isPassed) {
         //TODO 1time job
+        gameInfo.findAnswer = true
+        countScore()
+        renderScoreCount()
         renderingArgumentsImport.gameVariant1Mark.elm.classList.replace('fa-circle', 'fa-circle-xmark');
         renderingArgumentsImport.gameVariant2Mark.elm.classList.replace('fa-circle', 'fa-circle-xmark');
         renderingArgumentsImport.gameVariant3Mark.elm.classList.replace('fa-circle', 'fa-circle-xmark');
@@ -104,13 +109,16 @@ export function ChooseOption(elm) {
 
         elm.firstElementChild.classList.replace('fa-circle', 'fa-circle-check')
         elm.firstElementChild.classList.replace('fa-circle-xmark', 'fa-circle-check')
-        gameInfo.findAnswer = true
+
 
         renderingArgumentsImport.randomSongInfoSongControls.elm.pause()
+        console.log('031', )
         renderingArgumentsImport.gameAnswerName.elm.textContent = elm.lastChild.textContent
         renderingArgumentsImport.gameAnswerEmotion.elm.src = muzAlbumNumber[0].albumImg
+        chendgeNextLvlButton()
     } else {
         RandomNinePlay()
+        console.log('030', )
         if(!gameInfo.findAnswer) renderingArgumentsImport.gameAnswerEmotion.elm.src = newEmotion()
 
         elm.firstElementChild.classList.replace('fa-circle', 'fa-circle-xmark')
@@ -177,3 +185,25 @@ function resetVariantsIcons() {
     renderingArgumentsImport.gameVariant5Mark.elm.classList.replace('fa-circle-check', 'fa-circle');
     renderingArgumentsImport.gameVariant6Mark.elm.classList.replace('fa-circle-check', 'fa-circle');
 }
+
+function renderScoreCount(){
+    if (gameInfo.findAnswer){
+        renderingArgumentsImport.gameScoreNumber.elm.classList.remove('header-score-number__non-active')
+    } else {
+        renderingArgumentsImport.gameScoreNumber.elm.classList.add('header-score-number__non-active')
+        return
+    }
+
+renderingArgumentsImport.gameScoreNumber.elm.textContent = gameInfo.totalScore
+
+}
+
+function chendgeNextLvlButton(){
+
+    if (gameInfo.findAnswer) {
+        renderingArgumentsImport.gameNextLvl.elm.classList.add('game-next-lvl-btn-active')
+    } else{
+        renderingArgumentsImport.gameNextLvl.elm.classList.remove('game-next-lvl-btn-active')
+    }
+}
+

@@ -2,6 +2,7 @@ import "./sass css/main.sass"
 import Elm from "./js/element-maker";
 import {startGameBtn} from "./js/renderQuest";
 import {showFinalScore} from "./js/showFinalScore";
+import {gameInfo} from "./js/nextLevel";
 
 export const mainDiv = new Elm(
     document.body ,
@@ -32,7 +33,15 @@ startButton.setOnClick(()=>startGameBtn())
 startGameBtn()
 
 
-showFinalScore()
+showFinalScoreFromStart ()
+
+// this fun is a shortcut for cheking final resume stage
+function showFinalScoreFromStart (){
+    gameInfo.gameAlbumNumber = 9
+    gameInfo.showScoreStatus = true
+    showFinalScore()
+}
+
 
 
 

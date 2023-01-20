@@ -46,8 +46,8 @@ export function startGameBtn( ) {
     const gameScoreNumber = new Elm(
         gameScoreInfo.elm,
         'p',
-        'header-score-number',
-        '13'
+        'header-score-number header-score-number__non-active  ',
+        '0'
     )
 
     const finalScore = new Elm(
@@ -311,27 +311,27 @@ export function startGameBtn( ) {
     const gameAnswerEmotion = new Elm(
         gameAnswer.elm,
         'img',
-        'game-answer__emotion border-effect dsp-none'
+        'game-answer__emotion border-effect '
     )
 
 
     const gameAnswerInfo = new Elm(
         gameAnswer.elm,
         'div',
-        'game-answer__info-block dsp-none'
+        'game-answer__info-block '
     )
 
 
     const gameAnswerName = new Elm(
         gameAnswerInfo.elm,
         'p',
-        'game-answer__name dsp-none',
+        'game-answer__name ',
         'Name'
     )
     const gameAnswerAlbumName = new Elm(
         gameAnswerInfo.elm,
         'p',
-        'game-answer__album-name dsp-none',
+        'game-answer__album-name ',
         'Album name'
     )
 
@@ -339,7 +339,7 @@ export function startGameBtn( ) {
     const gameAnswerSongControls = new Elm(
         gameAnswer.elm,
         'audio',
-        'game-answer__muz dsp-none',
+        'game-answer__muz ',
         '',
         'controls',
         ''
@@ -356,7 +356,7 @@ export function startGameBtn( ) {
     const gameNextLvl = new Elm(
         gameBody.elm,
         '',
-        'game-next-lvl-btn border-effect',
+        'game-next-lvl-btn  border-effect ',
         'Next Level'
     )
 
@@ -409,20 +409,28 @@ export function startGameBtn( ) {
 
         randomImg,
         randomSongInfoSongControls,
+
         gameAnswerName,
         gameAnswerAlbumName,
         gameAnswerEmotion,
         gameAnswerSongControls,
-        gameAnswerSongSrc
+        gameScoreNumber,
+        gameNextLvl,
+        gameScoreText,
+
+
+
     }
 
     showFinalScoreImport = {
         finalScore,
+        gameHeader,
         gameBody,
+        gameFooter
+
     }
 
     gameNextLvl.setOnClick(()=>renderNextLvl())
-
     renderNextLvl('first time')
 }
 
