@@ -7,6 +7,7 @@
     "babel-loader": "^8.3.0",
     "css-loader": "^6.7.2",
     "file-loader": "^6.2.0",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.1",
     "postcss": "^8.4.19",
@@ -23,10 +24,13 @@
   "description": "My webpack project",
   "name": "my-webpack-project",
   "scripts": {
-    "build": "webpack --mode=production --define-process-env-node-env=production",
+    "build": "npm run clean && webpack --mode=production --define-process-env-node-env=production",
+    "clean": "rmdir /s /q dist",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
+    "prod": "webpack serve --color --hot --mode=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "deploy": "npm run build && npx gh-pages -d dist"
   }
 }

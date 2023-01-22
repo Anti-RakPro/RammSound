@@ -30,10 +30,10 @@ const startButton = new Elm(
 startButton.setOnClick(()=>startGameBtn())
 
 // skeep entree
-startGameBtn()
+// startGameBtn()
 
 
-showFinalScoreFromStart ()
+// showFinalScoreFromStart ()
 
 // this fun is a shortcut for cheking final resume stage
 function showFinalScoreFromStart (){

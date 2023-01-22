@@ -62,14 +62,18 @@ function renderFinalScoreElements(){
 
  renderFinalScoreImport = {
      finalScore,
-     finalScoreScoreNumber
+     finalScoreScoreNumber,
+     finalScoreResume
  }
 }
 
 
 
 function renderFinalScoreNumber(){
- renderFinalScoreImport.finalScoreScoreNumber.elm.textContent = gameInfo.totalScore
+    renderFinalScoreImport.finalScoreScoreNumber.elm.textContent = gameInfo.totalScore
+    if (gameInfo.totalScore === 40){
+        renderFinalScoreImport.finalScoreResume.elm.textContent = 'YOU HAVE PROVEN THAT YOU ARE A REAL RAMMSTEIN FAN'
+    }
 }
 
 function chendgeHeaderScore(){
@@ -101,7 +105,6 @@ function reranWholeNewGame(){
 }
 
 function   cleanFinalScoreStage(){
-
     showFinalScoreImport.gameHeader.elm.remove()
     showFinalScoreImport.finalScore.elm.remove()
     showFinalScoreImport.gameFooter.elm.remove()

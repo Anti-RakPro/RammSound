@@ -12,6 +12,7 @@ const config = {
   entry: ["./src/index.js", "./src/js/wallpaper.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: 'assets/[name][ext]'
   },
   devServer: {
     open: true,
@@ -20,6 +21,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html",
+      // TODO favicon: ''
     }),
 
     new MiniCssExtractPlugin(),
@@ -43,14 +45,15 @@ const config = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset/resource',
       },
       {
         test: /\.mp3$/,
-        loader: 'file-loader',
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
+        type: 'asset/resource',
+        // loader: 'file-loader',
+        // options: {
+        //   name: 'static/media/[name].[hash:8].[ext]'
+        // }
       }
 
 
